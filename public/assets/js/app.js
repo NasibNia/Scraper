@@ -65,12 +65,15 @@ function displayArticles(data){
                         </button>
                     </div>
                     <div class="modal-body">
-                        ...
+                        <form class="form-inline" id="comment-form" style="width:100%">
+                            <input type="text" class="rounded form-control mr-1" style="width:70%" id="commentInput" placeholder="comment something here">
+
+                            <button type="submit" class="btn btn-primary todo-btn mr-3" id="comment">comment!</button>
+                        </form>   
                     </div>
                     <div class="modal-footer">
                     <a href="#"><i class="fa fa-trash del-note"></i></a>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
                     </div>
                     </div>
                 </div>
