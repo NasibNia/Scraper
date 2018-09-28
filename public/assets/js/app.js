@@ -14,10 +14,10 @@ $(document).ready(function(){
     });
     
     //Posting a comment to database
-    $(document).on('click','#save-btn', function(event){
+    $(document).on('click','.cmnt-btn', function(event){
         // console.log(this)
-        // var id  = $(this).attr('data-id');
-        var id = $('#comment-form').attr('data-id');
+        var id  = $(this).attr('data-id');
+        // var id = $('#comment-form').attr('data-id');
         // var id="5bad95f9bf26d894acdac54a";
         var body = $("#commentInput").val().trim();
         console.log("body is ", body);
