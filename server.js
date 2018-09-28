@@ -19,17 +19,17 @@ app.use(logger("dev"));
 app.use(express.static("public"));
 
 
-// // If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
-// var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/hackerNewsdb";
+// If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/hackerNewsdb";
 
-// // Set mongoose to leverage built in JavaScript ES6 Promises
-// // Connect to the Mongo DB
-// mongoose.Promise = Promise;
-// mongoose.connect(MONGODB_URI);
+// Set mongoose to leverage built in JavaScript ES6 Promises
+// Connect to the Mongo DB
+mongoose.Promise = Promise;
+mongoose.connect(MONGODB_URI);
 
 
 // Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/hackerNewsdb", { useNewUrlParser: true });
+// mongoose.connect("mongodb://localhost/hackerNewsdb", { useNewUrlParser: true });
 // Use body-parser for handling form submissions
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
