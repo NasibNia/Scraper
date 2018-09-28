@@ -9,7 +9,15 @@ var path    = require('path');
 module.exports = function(app){
 
     app.get("/",function(req,res){
-        res.sendFile(path.join(__dirname, '../public', 'index1.html'));
+        db.Article.find({})
+        .populate("note")
+        .then(function(dbArticle){
+            // console.log("about to send results to handlebars  ", dbArticle);
+            res.render("index" , {allArticles : dbArticle});
+        })
+        .catch(function(err){
+            res.json(err);
+        });
     });
 
     // A get route to scrape the mashable website
@@ -30,7 +38,7 @@ module.exports = function(app){
                 var username = $(subtext).eq(1).text();
                 var userlink = $(subtext).eq(1).attr("href");
 
-                // console.log("a  ", a.text());
+                console.log("a  ", a.text());
                 // console.log("href  ", a.attr('href'));
                 // console.log("points  ", points);
                 // console.log("author  ", username);
@@ -71,8 +79,9 @@ module.exports = function(app){
 
     app.get("/articles/:id",function(req,res){
         db.Article.findOne({_id : req.params.id})
-        .populate("comment")
+        .populate("note")
         .then(function(dbArticle){
+            console.log("article found ", dbArticle);
             res.json(dbArticle);
         })
         .catch(function(err){
@@ -80,10 +89,12 @@ module.exports = function(app){
         });
     });
 
-    app.post("/article/:id", function(req,res){
-        db.Comment.create(req.body)
-        .then(function(dbComment){
-            return db.Article.findOneAndUpdate({_id : req.params.id} , {comment : dbComment._id} , {new: true});
+    app.post("/articles/:id", function(req,res){
+        console.log("djbhaszxn",req.body);
+        db.Note.create(req.body)
+        .then(function(dbNote){
+            console.log("inside server post");
+            return db.Article.findOneAndUpdate({ _id : req.params.id} , {note : dbNote._id} , {new: true});
         })
         .then(function(dbArticle){
             res.json(dbArticle);

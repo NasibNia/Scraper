@@ -1,0 +1,64 @@
+<button class="btn btn-primary" id="Scrape-btn">Start Scraping</button>
+
+<div id="scraped-div"></div>
+
+{{#each allArticles}}
+<div class="alert alert-primary hvr-bounce-in" style="width: 100%" role="alert" data-id={{this._id}}>
+    <div class="row">
+        <div class="col-md-12">
+            <a href="{{this.link}}">{{this.title}}</a> 
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+            <div><h4>{{this.points}}</h4></div>
+            <div><a href="{{this.userlink}}"><h4>{{this.username}}</h4></a></div> 
+        </div>
+        <div class="col-md-4">
+            <div>
+                <a href="#"><i class="fa fa-comment cmnt-btn" data-toggle="modal" data-target="#boxModal"></i></a>
+                <a href="#"><i class="fa fa-trash del-article"></i></a>
+                {{#if this.favorite}}
+                    <a href="#"><i class="fa fa-heart" style="color:red"></i></a>
+                {{else}}
+                    <a href="#"><i class="fa fa-heart" style="color:white"></i></a>
+                {{/if}}
+            </div>
+        </div>
+
+        
+        <!-- Modal -->
+        <div class="modal fade cornered" id="boxModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="form-inline" data-id="{{this._id}}" id="comment-form" style="width:100%">
+                    {{#if note}}
+                        <input type="text" class="rounded form-control mr-1" style="width:70%" id="commentInput" data-id="{{this._id}}" placeholder="{{this.note}}">
+                    {{else}}
+                        <input type="text" class="rounded form-control mr-1" style="width:70%" id="commentInput" data-id="{{this._id}}" placeholder="comment something here">
+                    {{/if}}
+
+                    <button type="submit" class="btn btn-primary todo-btn mr-3" id="save-btn">comment!</button>
+                </form>   
+            </div>
+            <div class="modal-footer">
+            <a href="#"><i class="fa fa-trash del-note"></i></a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+            </div>
+        </div>
+        </div>
+
+
+    </div>
+</div>
+
+{{/each}}
