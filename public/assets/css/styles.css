@@ -53,3 +53,6 @@ body {
   transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
 }
 
+.uk-button{
+    margin-left: 40%;
+}

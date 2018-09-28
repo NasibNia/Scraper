@@ -1,3 +1,4 @@
+<div id="target"></div>
 <div class='container-fluid'>
     <div class="jumbotron">
         <h1 class="display-2 title bouncing">Hacker News Scraper!</h1>
@@ -13,7 +14,7 @@
 
 <div class="row">
     <div class="col-md-3"></div>
-    <div class="col-md-6">
+    <div class="col-md-6" >
 
         {{#each allArticles}}
         <div class="alert alert-primary hvr-bounce-in uk-animation-scale-up uk-transform-origin-top-center pl-5" style="width: 100%" role="alert" >
@@ -24,11 +25,11 @@
             </div>
 
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-10">
                     <div><p>{{this.points}}</p>
                     <a class="hvr-bounce-in" href="{{this.userlink}}"><p>{{this.username}}</p></a></div> 
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-2">
                     <div>
                         {{#if note}}
                         <a ><i class="fa fa-comment cmnt-btn" style="color:red" data-toggle="modal" data-target="#boxModal"  data-noteid="{{note._id}}"  data-body="{{note.body}}" data-id="{{_id}}" ></i></a>
@@ -78,11 +79,7 @@
 
         {{/each}} 
 
-
-
-
-    <button class="btn btn-primary lead bouncing" id="Scrape-btn">Start Scraping</button>
-
+    <a class="uk-button uk-button-primary" href="#target" uk-scroll>Scroll Up</a>
 
     </div>
     <div class="col-md-3"></div>
