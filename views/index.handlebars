@@ -3,10 +3,10 @@
 <div id="scraped-div"></div>
 
 {{#each allArticles}}
-<div class="alert alert-primary hvr-bounce-in" style="width: 100%" role="alert" data-id={{this._id}}>
+<div class="alert alert-primary hvr-bounce-in" style="width: 100%" role="alert" >
     <div class="row">
         <div class="col-md-12">
-            <a href="{{this.link}}">{{this.title}}</a> 
+            <a id="article-title"href="{{this.link}}">{{this.title}}</a> 
         </div>
     </div>
 
@@ -17,7 +17,12 @@
         </div>
         <div class="col-md-4">
             <div>
-                <a href="#"><i class="fa fa-comment cmnt-btn" data-toggle="modal" data-target="#boxModal"></i></a>
+                {{#if note}}
+                <a href="#"><i class="fa fa-comment cmnt-btn" style="color:red" data-toggle="modal" data-target="#boxModal" data-noteid="{{note._id}}"  data-body="{{note.body}}" data-id="{{this._id}}" ></i></a>
+                {{else}}
+                <a href="#"><i class="fa fa-comment cmnt-btn" style="color:white" data-toggle="modal" data-target="#boxModal" data-noteid="{{note._id}}"  data-body="{{note.body}}" data-id="{{this._id}}"></i></a>
+                {{/if}}
+
                 <a href="#"><i class="fa fa-trash del-article"></i></a>
                 {{#if this.favorite}}
                     <a href="#"><i class="fa fa-heart" style="color:red"></i></a>
@@ -27,9 +32,9 @@
             </div>
         </div>
 
-        
+{{/each}}        
         <!-- Modal -->
-        <div class="modal fade cornered" id="boxModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade cornered" id="boxModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
         <div class="modal-dialog" role="document">
             <div class="modal-content">
             <div class="modal-header">
@@ -39,11 +44,11 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form class="form-inline" data-id="{{this._id}}" id="comment-form" style="width:100%">
-                    {{#if note}}
-                        <input type="text" class="rounded form-control mr-1" style="width:70%" id="commentInput" data-id="{{this._id}}" placeholder="{{this.note}}">
+                <form class="form-inline" data-id="{{_id}}" id="comment-form" style="width:100%">
+                    {{#if note.body}}
+                        <input type="text" class="rounded form-control mr-1" style="width:70%" id="commentInput" data-noteid="{{this.note._id}}" placeholder="{{this.note.body}}">
                     {{else}}
-                        <input type="text" class="rounded form-control mr-1" style="width:70%" id="commentInput" data-id="{{this._id}}" placeholder="comment something here">
+                        <input type="text" class="rounded form-control mr-1" style="width:70%" id="commentInput" data-noteid="{{this.note._id}}" placeholder="comment something here">
                     {{/if}}
 
                     <button type="submit" class="btn btn-primary todo-btn mr-3" id="save-btn">comment!</button>
@@ -61,4 +66,3 @@
     </div>
 </div>
 
-{{/each}}

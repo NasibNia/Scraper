@@ -13,12 +13,16 @@ $(document).ready(function(){
         scrape();
     });
     
-    //updating a comment in the database
-    $(document).on('submit','#comment-form', function(event){
-        var id  = $(this).attr('data-id');
+    //Posting a comment to database
+    $(document).on('click','#save-btn', function(event){
+        // console.log(this)
+        // var id  = $(this).attr('data-id');
+        var id = $('#comment-form').attr('data-id');
+        // var id="5bad95f9bf26d894acdac54a";
         var body = $("#commentInput").val().trim();
-        console.log("id is  :", id);
         console.log("body is ", body);
+        console.log("id which will be posted to is  :", id);
+
         var newData = {
             body: body
         };
@@ -27,7 +31,7 @@ $(document).ready(function(){
             url : "/articles/" + id,
             data : newData
         }).then(function(){
-            console.log("comment posted");
+            console.log("comment posted with the id of ", id);
             location.reload();
         });
     });
@@ -41,14 +45,14 @@ $(document).ready(function(){
         });
     }
 
-    $(document).on('click', ".alert", function(event){
-        var id = $(this).attr('data-id');
-        $.get("/articles/" +id , function(results){
-            console.log("load specific articles"  , results);
+    // $(document).on('click', ".alert", function(event){
+    //     var id = $(this).attr('data-id');
+    //     $.get("/articles/" +id , function(results){
+    //         console.log("load specific articles"  , results);
     
-        });
+    //     });
 
-    });
+    // });
 
 });
 

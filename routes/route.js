@@ -12,7 +12,7 @@ module.exports = function(app){
         db.Article.find({})
         .populate("note")
         .then(function(dbArticle){
-            // console.log("about to send results to handlebars  ", dbArticle);
+            console.log("about to send results to handlebars  ", dbArticle);
             res.render("index" , {allArticles : dbArticle});
         })
         .catch(function(err){
