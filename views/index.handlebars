@@ -1,67 +1,93 @@
-<button class="btn btn-primary" id="Scrape-btn">Start Scraping</button>
-
-<div id="scraped-div"></div>
-
-{{#each allArticles}}
-<div class="alert alert-primary hvr-bounce-in" style="width: 100%" role="alert" >
-    <div class="row">
-        <div class="col-md-12">
-            <a id="article-title"href="{{this.link}}">{{this.title}}</a> 
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-8">
-            <div><h4>{{this.points}}</h4></div>
-            <div><a href="{{this.userlink}}"><h4>{{this.username}}</h4></a></div> 
-        </div>
-        <div class="col-md-4">
-            <div>
-                {{#if note}}
-                <a ><i class="fa fa-comment cmnt-btn" style="color:red" data-toggle="modal" data-target="#boxModal"  data-noteid="{{note._id}}"  data-body="{{note.body}}" data-id="{{_id}}" ></i></a>
-                {{else}}
-                <a ><i class="fa fa-comment cmnt-btn" style="color:white" data-toggle="modal" data-target="#boxModal"  data-noteid="{{note._id}}"  data-body="{{note.body}}" data-id="{{this._id}}"></i></a>
-                {{/if}}
-
-                <a ><i class="fa fa-trash del-article"></i></a>
-                {{#if this.favorite}}
-                    <a ><i class="fa fa-heart" style="color:red"></i></a>
-                {{else}}
-                    <a ><i class="fa fa-heart" style="color:white"></i></a>
-                {{/if}}
-            </div>
-        </div>
-
-      
-        <!-- Modal -->
-        <div class="modal fade cornered" id="boxModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-id="{{_id}}">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                
-                <div data-noteid="{{note._id}}">{{note.body}}</div>
-                
-                <form class="form-inline" id="comment-form" style="width:100%">
-                    <input type="text" class="rounded form-control mr-1" style="width:70%" id="commentInput" placeholder="comment here">
-                    <button type="submit" class="btn btn-primary todo-btn mr-3" id="save-btn" data-dismiss="modal" data-id="{{_id}}">comment!</button>
-                </form>   
-            </div>
-            <div class="modal-footer">
-            <a ><i class="fa fa-trash del-note"></i></a>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" data-id="{{_id}}">Close</button>
-            </div>
-            </div>
-        </div>
-        </div>
-
-
+<div class='container-fluid'>
+    <div class="jumbotron">
+        <h1 class="display-2 title bouncing">Hacker News Scraper!</h1>
+        
+        {{!-- <div id="hacker_gif"> <img src="https://media.giphy.com/media/Ah3zHH7hvsSB2/giphy.gif"></div> --}}
+        <button class="btn btn-primary lead bouncing" id="Scrape-btn">Start Scraping</button>
+        {{!-- <p class="lead bouncing text-center">Order Any Burger You Want!</p> --}}
     </div>
 </div>
 
-{{/each}}  
+<div id="parallax">
+
+
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+
+        {{#each allArticles}}
+        <div class="alert alert-primary hvr-bounce-in uk-animation-scale-up uk-transform-origin-top-center pl-5" style="width: 100%" role="alert" >
+            <div class="row">
+                <div class="col-md-12">
+                    <a class="hvr-bounce-in" id="article-title"href="{{this.link}}">{{this.title}}</a> 
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-8">
+                    <div><p>{{this.points}}</p>
+                    <a class="hvr-bounce-in" href="{{this.userlink}}"><p>{{this.username}}</p></a></div> 
+                </div>
+                <div class="col-md-4">
+                    <div>
+                        {{#if note}}
+                        <a ><i class="fa fa-comment cmnt-btn" style="color:red" data-toggle="modal" data-target="#boxModal"  data-noteid="{{note._id}}"  data-body="{{note.body}}" data-id="{{_id}}" ></i></a>
+                        {{else}}
+                        <a ><i class="fa fa-comment cmnt-btn" style="color:white" data-toggle="modal" data-target="#boxModal"  data-noteid="{{note._id}}"  data-body="{{note.body}}" data-id="{{this._id}}"></i></a>
+                        {{/if}}
+
+                        <a ><i class="fa fa-trash del-article"></i></a>
+                        {{#if this.favorite}}
+                            <a ><i class="fa fa-heart" style="color:red"></i></a>
+                        {{else}}
+                            <a ><i class="fa fa-heart" style="color:white"></i></a>
+                        {{/if}}
+                    </div>
+                </div>
+
+            
+                <!-- Modal -->
+                <div class="modal fade cornered" id="boxModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-id="{{_id}}">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        
+                        <div data-noteid="{{note._id}}">{{note.body}}</div>
+                        
+                        <form class="form-inline" id="comment-form" style="width:100%">
+                            <input type="text" class="rounded form-control mr-1" style="width:70%" id="commentInput" placeholder="{{note.body}}">
+                            <button type="submit" class="btn btn-primary todo-btn mr-3" id="save-btn" data-dismiss="modal" data-id="{{_id}}">comment!</button>
+                        </form>   
+                    </div>
+                    <div class="modal-footer">
+                    <a ><i class="fa fa-trash del-note"></i></a>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" data-id="{{_id}}">Close</button>
+                    </div>
+                    </div>
+                </div>
+                </div>
+
+            </div>
+        </div>
+
+        {{/each}} 
+
+
+
+
+    <button class="btn btn-primary lead bouncing" id="Scrape-btn">Start Scraping</button>
+
+
+    </div>
+    <div class="col-md-3"></div>
+
+
+</div>
+
+ 
