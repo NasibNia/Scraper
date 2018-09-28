@@ -18,23 +18,23 @@
         <div class="col-md-4">
             <div>
                 {{#if note}}
-                <a href="#"><i class="fa fa-comment cmnt-btn" style="color:red" data-toggle="modal" data-target="#boxModal" data-noteid="{{note._id}}"  data-body="{{note.body}}" data-id="{{_id}}" ></i></a>
+                <a ><i class="fa fa-comment cmnt-btn" style="color:red" data-toggle="modal" data-target="#boxModal"  data-noteid="{{note._id}}"  data-body="{{note.body}}" data-id="{{_id}}" ></i></a>
                 {{else}}
-                <a href="#"><i class="fa fa-comment cmnt-btn" style="color:white" data-toggle="modal" data-target="#boxModal" data-noteid="{{note._id}}"  data-body="{{note.body}}" data-id="{{this._id}}"></i></a>
+                <a ><i class="fa fa-comment cmnt-btn" style="color:white" data-toggle="modal" data-target="#boxModal"  data-noteid="{{note._id}}"  data-body="{{note.body}}" data-id="{{this._id}}"></i></a>
                 {{/if}}
 
-                <a href="#"><i class="fa fa-trash del-article"></i></a>
+                <a ><i class="fa fa-trash del-article"></i></a>
                 {{#if this.favorite}}
-                    <a href="#"><i class="fa fa-heart" style="color:red"></i></a>
+                    <a ><i class="fa fa-heart" style="color:red"></i></a>
                 {{else}}
-                    <a href="#"><i class="fa fa-heart" style="color:white"></i></a>
+                    <a ><i class="fa fa-heart" style="color:white"></i></a>
                 {{/if}}
             </div>
         </div>
 
       
         <!-- Modal -->
-        <div class="modal fade cornered" id="boxModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+        <div class="modal fade cornered" id="boxModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-id="{{_id}}">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
             <div class="modal-header">
@@ -44,17 +44,17 @@
                 </button>
             </div>
             <div class="modal-body">
-                {{#if note}}
-                    <div data-noteid="{{note._id}}">{{note.body}}</div>
-                {{/if}}
+                
+                <div data-noteid="{{note._id}}">{{note.body}}</div>
+                
                 <form class="form-inline" id="comment-form" style="width:100%">
                     <input type="text" class="rounded form-control mr-1" style="width:70%" id="commentInput" placeholder="comment here">
                     <button type="submit" class="btn btn-primary todo-btn mr-3" id="save-btn" data-dismiss="modal" data-id="{{_id}}">comment!</button>
                 </form>   
             </div>
             <div class="modal-footer">
-            <a href="#"><i class="fa fa-trash del-note"></i></a>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <a ><i class="fa fa-trash del-note"></i></a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" data-id="{{_id}}">Close</button>
             </div>
             </div>
         </div>

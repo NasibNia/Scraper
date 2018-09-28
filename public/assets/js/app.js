@@ -13,10 +13,13 @@ $(document).ready(function(){
         scrape();
     });
     
-    //Posting a comment to database
     $(document).on('click','.cmnt-btn', function(event){
-        // console.log(this)
+        console.log(this)
         var id  = $(this).attr('data-id');
+    //Posting a comment to database
+    $(document).on('click','#save-btn', function(e){
+        // console.log(this)
+        // var id  = $(this).attr('data-id');
         // var id = $('#comment-form').attr('data-id');
         // var id="5bad95f9bf26d894acdac54a";
         var body = $("#commentInput").val().trim();
@@ -30,11 +33,12 @@ $(document).ready(function(){
             method : "POST",
             url : "/articles/" + id,
             data : newData
-        }).then(function(){
+        }).then(function(result){
             console.log("comment posted with the id of ", id);
             location.reload();
         });
     });
+});
     function scrape(){
         $.ajax({
             method :"GET",
