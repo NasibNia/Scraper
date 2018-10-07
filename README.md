@@ -1,15 +1,18 @@
 # YC Scraper! All about Hackernews!
+Check it out! ["YC HackerNews Scraper"](https://hackernewsscraper.herokuapp.com/)
 
 This fun project is about scraping my favorite website that is nothing but "YC's Hackernews". And what is more delightful than that? To have my own library of news all in one place with the additional option to make notes of my own and customizing them in my own way!
 And it is not only for me; any body can use it and enjoy!
 
-![scraping]("https://media.giphy.com/media/Ah3zHH7hvsSB2/giphy.gif")
+![scraping](https://media.giphy.com/media/Ah3zHH7hvsSB2/giphy.gif)
 
 # More about the application
 The application is deployed on heroku and can be launched through by clicking on this link ["YC HackerNews Scraper"](https://hackernewsscraper.herokuapp.com/).
 I used mongoDB to store my precious collection of scraped articles along with couple of properties that were kind of interesting to me personally, including title of the article and the link to its complete read, the points of the article based on readers opinion and the author username and the link to his/her profile. I also created a boolean property in the schema to keep track of the articles that I have marked as favorite. Also, I made another collection with the name note that is owned by the atricle as well. This has been made possible by refrecing the ObjectId of the article in the note. The note will be populated and added to a specific article every time that the user makes a note about that article. This way, each article could have itsown notes, and the note could be read, updated or deleted after they are made as well.
 
 By clicking on the Scrape button all the articles in the [HackerNews website](https://news.ycombinator.com/) will be scraped and shown in the page. If the page has already contains some articles, meaning that some scraping has been already done, the articles currently existing in our database would not be duplicated. The new ones, however, will be added to our database and ,hence loaded on the page.
+![scraping](public/assets/images/YC-Scraper.gif)
+
 
 #Modularity of the application
 
