@@ -39,9 +39,9 @@
 
                         <a ><i class="fa fa-trash del-article"></i></a>
                         {{#if this.favorite}}
-                            <a ><i class="fa fa-heart" style="color:red"></i></a>
+                            <a ><i class="fa fa-heart" id="fav-id" data-id="{{_id}}" style="color:red"></i></a>
                         {{else}}
-                            <a ><i class="fa fa-heart" style="color:white"></i></a>
+                            <a ><i class="fa fa-heart" id="fav-id" data-id="{{_id}}" style="color:white"></i></a>
                         {{/if}}
                     </div>
                 </div>

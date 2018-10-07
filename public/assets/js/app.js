@@ -38,7 +38,8 @@ $(document).ready(function(){
             location.reload();
         });
     });
-});
+    });
+    
     function scrape(){
         $.ajax({
             method :"GET",
@@ -49,14 +50,7 @@ $(document).ready(function(){
         });
     }
 
-    // $(document).on('click', ".alert", function(event){
-    //     var id = $(this).attr('data-id');
-    //     $.get("/articles/" +id , function(results){
-    //         console.log("load specific articles"  , results);
-    
-    //     });
 
-    // });
 
 });
 
