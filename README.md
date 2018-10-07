@@ -136,6 +136,30 @@ This block of the code show how we could add or update a note on a specific arti
         });
     });
 ```
+This block of code belongs to the handlebar and shows how the properties that are loading on the page are populated. points, userlink and username, note, and note.body are all populated from the array of objects that are sent from the get route to the main page in the server side.
+other properties could also be decided based on the information: for example if the article is saved as a favorite the heart symbole on the bar would have a red colore while the color would be white otherwise. similarly for the comment, the color would be red if there is already a note made for that article.
+```
+<div class="col-md-10">
+    <div><p>{{this.points}}</p>
+    <a class="hvr-bounce-in" href="{{this.userlink}}"><p>{{this.username}}</p></a></div> 
+</div>
+<div class="col-md-2">
+    <div>
+        {{#if note}}
+        <a ><i class="fa fa-comment cmnt-btn" style="color:red" data-toggle="modal" data-target="#boxModal"  data-noteid="{{note._id}}"  data-body="{{note.body}}" data-id="{{_id}}" ></i></a>
+        {{else}}
+        <a ><i class="fa fa-comment cmnt-btn" style="color:white" data-toggle="modal" data-target="#boxModal"  data-noteid="{{note._id}}"  data-body="{{note.body}}" data-id="{{this._id}}"></i></a>
+        {{/if}}
+
+        <a ><i class="fa fa-trash del-article"></i></a>
+        {{#if this.favorite}}
+            <a ><i class="fa fa-heart" id="fav-id" data-id="{{_id}}" style="color:red"></i></a>
+        {{else}}
+            <a ><i class="fa fa-heart" id="fav-id" data-id="{{_id}}" style="color:white"></i></a>
+        {{/if}}
+    </div>
+</div>
+```
 
 # Learning points
 <!-- Learning points where you would write what you thought was helpful -->
